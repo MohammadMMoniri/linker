@@ -1,0 +1,19 @@
+version: "3.3"
+   
+services:
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - .envfile
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .envfile
