@@ -17,4 +17,8 @@ class LinkModel(models.Model):
         return self.title
 
     def anonymous_create(self, link, *args, **kwargs):
-        pass  
+        pass
+
+    @staticmethod
+    def get_orginal_link(shortcut):
+        return LinkModel.objects.get(shortcut=shortcut).link
