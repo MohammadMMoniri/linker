@@ -82,6 +82,9 @@ DATABASES = {
         'PASSWORD': getenv("POSTGRES_PASSWORD"),
         'HOST': getenv("HOST"),
         'PORT': getenv("PORT"),
+        'TEST':{
+            'NAME': 'mytestdatabase',
+        }
     }
  
 }
