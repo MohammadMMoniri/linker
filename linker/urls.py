@@ -3,8 +3,9 @@
 
 
 from django.urls import path, include
-from .views import HomeView
+from .views import HomeView, RedirectToLinkView
 
 urlpatterns = [
- path('', HomeView.as_view())
+    path('', HomeView.as_view()),
+    path('<str:shortcut>/', RedirectToLinkView.as_view())
 ]
