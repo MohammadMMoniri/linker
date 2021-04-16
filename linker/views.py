@@ -15,6 +15,7 @@ class HomeView(View):
     def post(self, request):
         form = AnonymousLinkForm(request.POST)
         if form.is_valid():
+            LinkModel.anonymous_create(link=form.data['link'])
             message = {
                 "type": "success",
                 "data": "ur link created successfully"
