@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+
+from .tools import Link
+
 import requests
 
 
@@ -16,9 +19,20 @@ class LinkModel(models.Model):
     def __str__(self):
         return self.title
 
-    def anonymous_create(self, link, *args, **kwargs):
-        pass
+    @staticmethod
+    def anonymous_create(link, *args, **kwargs):
+        lin = LinkModel.objects.filter(link=link)
+        if lin.exists():
+            return lin.first().shortcut
+        lin = Link(link)
+        link_title = lin.get_title()
+        link_shortcut = lin.create_shortcut()
+        print(link_shortcut)
+        return LinkModel.objects.create(link=link, title=link_title, shortcut=link_shortcut)
 
     @staticmethod
     def get_orginal_link(shortcut):
-        return LinkModel.objects.get(shortcut=shortcut).link
+        lin = LinkModel.objects.get(shortcut=shortcut)
+        lin.click_count += 1
+        lin.save()
+        return lin.link
