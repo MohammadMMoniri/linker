@@ -27,8 +27,8 @@ class LinkModel(models.Model):
         lin = Link(link)
         link_title = lin.get_title()
         link_shortcut = lin.create_shortcut()
-        print(link_shortcut)
-        return LinkModel.objects.create(link=link, title=link_title, shortcut=link_shortcut)
+        LinkModel.objects.create(link=link, title=link_title, shortcut=link_shortcut)
+        return link_shortcut
 
     @staticmethod
     def get_orginal_link(shortcut):
