@@ -1,3 +1,7 @@
 .envfile
 __pycache__/
 static/
+/linker/migrations/
+/accounts/migrations/
+/venv/
+/.idea/
