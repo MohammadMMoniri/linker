@@ -40,7 +40,6 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     """User model."""
     id = models.AutoField(primary_key=True)
-
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
