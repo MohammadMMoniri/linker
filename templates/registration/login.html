@@ -1,0 +1,24 @@
+{% extends 'html/base.html' %}
+{% block title %}login{% endblock %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+  {% load static %}
+  <div class="px-4 py-5 my-5 text-center">
+    <style>
+      .login-password{
+        @extends .form-control;
+      }
+    </style>
+    <h1>login page</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.username|add_class:"from-control"|attr:"placeholder:email" }}
+      {{ form.password|add_class:"login-password"|attr:"placeholder:password" }}
+      <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+  </div>
+
+{% endblock %}
