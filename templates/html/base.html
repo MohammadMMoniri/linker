@@ -16,7 +16,7 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+        <li><a href="{% url 'home' %}" class="nav-link px-2 text-secondary">Home</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
         <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
@@ -28,8 +28,13 @@
       </form>
 
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">Login</button>
-        <button type="button" class="btn btn-warning">Sign-up</button>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-light me-2" >profile</button></a>
+          <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning">logout</button></a>
+        {% else %}
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+        <a href="{% url 'signup' %}"><button type="button" class="btn btn-warning">Sign-up</button></a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -42,9 +47,11 @@
         </div>
       {% endif %}
     </div>
-    {% block content %}
-    <h1>Hello, world!</h1>
-    {% endblock %}
+    <div class="container">
+      {% block content %}
+      <h1>Hello, world!</h1>
+      {% endblock %}
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
