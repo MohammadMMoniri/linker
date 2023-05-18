@@ -31,4 +31,4 @@ class HomeView(View):
 
 class RedirectToLinkView(View):
     def get(self, request, shortcut):
-        return redirect(LinkModel.get_orginal_link(shortcut=shortcut))
+        return redirect(LinkModel.get_original_link(shortcut=shortcut))

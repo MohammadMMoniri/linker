@@ -31,7 +31,7 @@ class LinkModel(models.Model):
         return link_shortcut
 
     @staticmethod
-    def get_orginal_link(shortcut):
+    def get_original_link(shortcut):
         lin = LinkModel.objects.get(shortcut=shortcut)
         lin.click_count += 1
         lin.save()
